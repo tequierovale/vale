@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Para mi Vale 🫶🏼</title>
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;700&display=swap");
+
+      :root {
+        --primary-color: #d63384; /* Rosa intenso/fucsia */
+        --secondary-color: #bb3754; /* Rojo profundo */
+        --accent-color: #9c36b3; /* Púrpura amatista */
+        --text-color: #333; /* Gris oscuro para el texto principal */
+        --light-text-color: #fff; /* Blanco para texto sobre fondos oscuros */
+        --bg-gradient-start: #f06595; /* Rosa claro para el inicio del degradado */
+        --bg-gradient-end: #a61e4d; /* Rojo oscuro para el final del degradado */
+        --button-bg-color: #ffe0b2; /* Amarillo muy pálido/beige para botones */
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(
+          135deg,
+          var(--bg-gradient-start),
+          var(--bg-gradient-end)
+        );
+        color: var(--text-color);
+        overflow-x: hidden;
+        -webkit-overflow-scrolling: touch; /* Para un scroll más suave en iOS */
+        position: relative; /* Importante para posicionar los corazones de fondo */
+      }
+
+      /* Corazones dispersos en el fondo */
+      .background-heart {
+        position: fixed; /* Fijos para que no hagan scroll con el contenido */
+        font-size: 2.5em; /* Tamaño ajustado para que no dominen tanto al ser más */
+        color: rgba(255, 255, 255, 0.3); /* Más transparentes */
+        pointer-events: none; /* No interfieren con el clic */
+        animation: floatAndFade 15s infinite ease-in-out; /* Animación más larga para un movimiento más suave */
+        z-index: -1; /* Detrás de todo el contenido */
+      }
+
+      /* Posiciones aleatorias para cada corazón de fondo (más en las orillas) */
+      .heart-1 {
+        top: 5%;
+        left: 10%;
+        animation-delay: 0s;
+      }
+      .heart-2 {
+        top: 20%;
+        right: 5%;
+        font-size: 2em;
+        animation-delay: 2s;
+      }
+      .heart-3 {
+        bottom: 15%;
+        left: 15%;
+        font-size: 3em;
+        animation-delay: 4s;
+      }
+      .heart-4 {
+        top: 40%;
+        left: 2%;
+        font-size: 1.8em;
+        animation-delay: 1s;
+      }
+      .heart-5 {
+        bottom: 5%;
+        right: 20%;
+        font-size: 2.8em;
+        animation-delay: 3s;
+      }
+      .heart-6 {
+        top: 10%;
+        right: 25%;
+        font-size: 2em;
+        animation-delay: 5s;
+      }
+      .heart-7 {
+        top: 30%;
+        left: 30%;
+        font-size: 2.2em;
+        animation-delay: 6s;
+      }
+      .heart-8 {
+        bottom: 25%;
+        right: 10%;
+        font-size: 2.5em;
+        animation-delay: 7s;
+      }
+      .heart-9 {
+        top: 55%;
+        left: 5%;
+        font-size: 1.5em;
+        animation-delay: 8s;
+      }
+      .heart-10 {
+        bottom: 35%;
+        left: 40%;
+        font-size: 2em;
+        animation-delay: 9s;
+      }
+      .heart-11 {
+        top: 70%;
+        right: 15%;
+        font-size: 2.3em;
+        animation-delay: 10s;
+      }
+      .heart-12 {
+        top: 2%;
+        left: 50%;
+        font-size: 1.8em;
+        animation-delay: 11s;
+      }
+      .heart-13 {
+        bottom: 2%;
+        right: 50%;
+        font-size: 2.1em;
+        animation-delay: 12s;
+      }
+      .heart-14 {
+        top: 80%;
+        left: 25%;
+        font-size: 2.4em;
+        animation-delay: 13s;
+      }
+      .heart-15 {
+        top: 15%;
+        left: 45%;
+        font-size: 1.9em;
+        animation-delay: 14s;
+      }
+      /* Nuevos corazones para mayor densidad en los bordes */
+      .heart-16 {
+        top: 12%;
+        left: 3%;
+        font-size: 2.1em;
+        animation-delay: 1.5s;
+      }
+      .heart-17 {
+        top: 60%;
+        right: 3%;
+        font-size: 2.6em;
+        animation-delay: 7.5s;
+      }
+      .heart-18 {
+        bottom: 10%;
+        left: 8%;
+        font-size: 2.3em;
+        animation-delay: 9.5s;
+      }
+      .heart-19 {
+        top: 45%;
+        right: 8%;
+        font-size: 1.7em;
+        animation-delay: 4.5s;
+      }
+      .heart-20 {
+        bottom: 20%;
+        left: 2%;
+        font-size: 2.9em;
+        animation-delay: 11.5s;
+      }
+      .heart-21 {
+        top: 25%;
+        left: 8%;
+        font-size: 2.4em;
+        animation-delay: 3.5s;
+      }
+      .heart-22 {
+        bottom: 30%;
+        right: 2%;
+        font-size: 2.2em;
+        animation-delay: 8.5s;
+      }
+
+      @keyframes floatAndFade {
+        0% {
+          transform: translateY(0) scale(0.8);
+          opacity: 0.3;
+        }
+        50% {
+          transform: translateY(-30px) scale(1);
+          opacity: 0.6;
+        }
+        100% {
+          transform: translateY(0) scale(0.8);
+          opacity: 0.3;
+        }
+      }
+
+      @keyframes heartbeat {
+        0% {
+          transform: scale(1);
+        }
+        25% {
+          transform: scale(1.05);
+        }
+        50% {
+          transform: scale(1);
+        }
+        75% {
+          transform: scale(1.05);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      .heartbeat-text {
+        font-family: "Dancing Script", cursive;
+  animation: heartbeat 8s infinite ease-in-out; /* Aplica la animación */
+  display: inline-block; /* Necesario para que transform funcione correctamente */
+}
+
+      .container {
+        width: 100%;
+        max-width: 600px; /* Para asegurar que no se vea demasiado ancho en pantallas grandes */
+        margin: 0 auto;
+        padding: 20px;
+        box-sizing: border-box;
+        position: relative; /* Asegura que el contenido esté por encima de los corazones de fondo */
+        z-index: 1;
+      }
+
+      header {
+        text-align: center;
+        padding: 40px 0;
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(45deg, var(--primary-color), #ff9a8d);
+        color: var(--light-text-color);
+        border-bottom-left-radius: 50% 20px;
+        border-bottom-right-radius: 50% 20px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        padding: 40px 0 40px 0;
+      }
+
+      header h1 {
+        font-family: "Dancing Script";
+        font-size: 2.8em;
+        margin: 0;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        animation: fadeInDown 1.5s ease-out;
+      }
+
+      header p {
+        font-size: 1.1em;
+        margin-top: 10px;
+        animation: fadeIn 2s ease-out;
+      }
+
+      .heart-animation {
+        position: absolute;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 4em;
+        color: rgba(255, 255, 255, 0.7);
+        animation: floatHeart 4s infinite ease-in-out;
+        z-index: 0;
+      }
+
+      @keyframes floatHeart {
+        0% {
+          transform: translate(-50%, 0) scale(0.8);
+          opacity: 0.7;
+        }
+        50% {
+          transform: translate(-50%, -20px) scale(1);
+          opacity: 1;
+        }
+        100% {
+          transform: translate(-50%, 0) scale(0.8);
+          opacity: 0.7;
+        }
+      }
+
+      @keyframes fadeInDown {
+        from {
+          opacity: 0;
+          transform: translateY(-30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      .section {
+        background-color: rgba(255, 255, 255, 0.95);
+        border-radius: 15px;
+        padding: 25px;
+        margin-bottom: 25px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        opacity: 0; /* Para la animación de aparición */
+        transform: translateY(20px); /* Para la animación de aparición */
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      }
+
+      .section.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .section h2 {
+        font-family: "Dancing Script", cursive;
+        color: var(--primary-color);
+        font-size: 2em;
+        margin-bottom: 15px;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+      }
+
+      .section p {
+        line-height: 1.6;
+        color: var(--text-color);
+        margin-bottom: 15px;
+      }
+
+      .gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 15px;
+        margin-top: 20px;
+      }
+
+      .gallery img {
+        width: 100%;
+        min-height: 200px; /* Altura fija para uniformidad */
+        object-fit: cover; /* Asegura que la imagen cubra el área sin distorsionarse */
+        border-radius: 10px;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .gallery img:hover {
+        transform: scale(1.03);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .special-message {
+        background: linear-gradient(45deg, #ff9a8d, var(--primary-color));
+        color: var(--light-text-color);
+        padding: 30px;
+        border-radius: 20px;
+        margin-top: 30px;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .special-message h2 {
+        color: var(--light-text-color);
+        font-size: 2.2em;
+        margin-bottom: 20px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .special-message p {
+        font-size: 1.1em;
+        line-height: 1.8;
+        margin-bottom: 25px;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+      }
+
+      .special-message button {
+        font-family: "Dancing Script", cursive;
+        background-color: var(--secondary-color);
+        color: var(--light-text-color);
+        border: none;
+        padding: 15px 30px;
+        border-radius: 30px;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease,
+          box-shadow 0.3s ease;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        position: relative;
+        z-index: 10;
+      }
+
+      .final-heart {
+        position: absolute;
+        font-size: 5em;
+        color: rgba(255, 255, 255, 0.6);
+        animation: pulseHeart 1.5s infinite;
+        pointer-events: none;
+        z-index: 5;
+      }
+
+      .final-heart.left {
+        bottom: 10px;
+        left: 10px;
+      }
+      .final-heart.right {
+        top: 10px;
+        right: 10px;
+      }
+
+      @keyframes pulseHeart {
+        0% {
+          transform: scale(1);
+          opacity: 0.6;
+        }
+        50% {
+          transform: scale(1.1);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 0.6;
+        }
+      }
+
+      footer {
+        text-align: center;
+        color: rgba(51, 51, 51, 0.7);
+        font-size: 0.9em;
+        margin-top: 10px;
+      }
+
+      /* Responsive adjustments for smaller screens */
+      @media (max-width: 400px) {
+        header h1 {
+          font-size: 2.2em;
+        }
+        header p {
+          font-size: 1em;
+        }
+        .section h2 {
+          font-size: 1.8em;
+        }
+        .special-message h2 {
+          font-size: 1.8em;
+        }
+        .special-message p {
+          font-size: 1em;
+        }
+        .special-message button {
+          font-size: 1.5em;
+          padding: 12px 25px;
+        }
+        .gallery {
+          grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+          gap: 10px;
+        }
+        .gallery img {
+          height: 120px;
+        }
+      }
+
+      /* Estilos para el Modal */
+      .modal {
+        display: none; /* Oculto por defecto */
+        position: fixed; /* Se superpone a todo */
+        z-index: 1000; /* Por encima de todo */
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto; /* Permite scroll si el contenido es grande */
+        background-color: rgba(0, 0, 0, 0.6); /* Fondo semi-transparente */
+        align-items: center; /* Centrado vertical */
+        justify-content: center; /* Centrado horizontal */
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+      }
+
+      .modal.show {
+        opacity: 1;
+        display: flex; /* Aseguramos que se muestre como flex para centrado */
+      }
+
+      .modal-content {
+        background-color: var(--button-bg-color); /* Fondo del modal */
+        /* background: linear-gradient(45deg, var(--accent-color), var(--primary-color)); */ /* Este era el original */
+        border: 2px solid var(--accent-color); /* Detalle en accent-color */
+        margin: auto;
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        width: 80%; /* Ancho del modal */
+        max-width: 350px; /* Ancho máximo */
+        text-align: center;
+        position: relative;
+        transform: translateY(20px); /* Para animación de entrada */
+        opacity: 0;
+        transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+        color: var(
+          --text-color
+        ); /* Cambiamos a text-color para que el texto sea legible */
+        font-family: "Poppins", sans-serif;
+      }
+
+      .modal.show .modal-content {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      .modal-content h3 {
+        font-family: "Dancing Script", cursive;
+        font-size: 2.5em;
+        margin-top: 0;
+        margin-bottom: 20px;
+        color: var(--primary-color); /* Para que resalte el título */
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+      }
+
+      .modal-content p {
+        font-size: 1.1em;
+        margin-bottom: 25px;
+        color: var(
+          --text-color
+        ); /* Asegura que el párrafo tenga el color correcto */
+      }
+
+      .modal-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 15px; /* Espacio entre los botones */
+      }
+
+      .modal-content button {
+        background-color: var(
+          --secondary-color
+        ); /* Color de fondo del botón dentro del modal */
+        color: var(--light-text-color); /* Color del texto del botón */
+        border: none;
+        padding: 12px 25px;
+        border-radius: 25px;
+        font-size: 1.1em;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      .modal-content button:hover {
+        background-color: var(
+          --primary-color
+        ); /* Un tono más oscuro al pasar el mouse */
+        transform: translateY(-1px);
+      }
+
+      /* Estilos para el segundo modal "¡Te Amo!" */
+      #loveModal .modal-content {
+        background-color: var(--button-bg-color); /* Fondo del modal */
+        border: 2px solid var(--accent-color); /* Detalle en accent-color */
+      }
+
+      #loveModal .modal-content h3 {
+        font-size: 3em;
+        animation: pulseText 1.5s infinite alternate; /* Animación para el texto "Te Amo" */
+      }
+
+      /* Estilos para el modal "Ok" del botón "No" */
+      #okModal .modal-content {
+        background-color: var(--button-bg-color); /* Fondo del modal */
+        border: 2px solid var(--accent-color); /* Detalle en accent-color */
+      }
+      #okModal .modal-content h3 {
+        color: var(--primary-color);
+      }
+
+      @keyframes pulseText {
+        0% {
+          transform: scale(1);
+          text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+        100% {
+          transform: scale(1.05);
+          text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="background-heart heart-1">❤️</div>
+    <div class="background-heart heart-2">❤️</div>
+    <div class="background-heart heart-3">❤️</div>
+    <div class="background-heart heart-4">❤️</div>
+    <div class="background-heart heart-5">❤️</div>
+    <div class="background-heart heart-6">❤️</div>
+    <div class="background-heart heart-7">❤️</div>
+    <div class="background-heart heart-8">❤️</div>
+    <div class="background-heart heart-9">❤️</div>
+    <div class="background-heart heart-10">❤️</div>
+    <div class="background-heart heart-11">❤️</div>
+    <div class="background-heart heart-12">❤️</div>
+    <div class="background-heart heart-13">❤️</div>
+    <div class="background-heart heart-14">❤️</div>
+    <div class="background-heart heart-15">❤️</div>
+    <div class="background-heart heart-16">❤️</div>
+    <div class="background-heart heart-17">❤️</div>
+    <div class="background-heart heart-18">❤️</div>
+    <div class="background-heart heart-19">❤️</div>
+    <div class="background-heart heart-20">❤️</div>
+    <div class="background-heart heart-21">❤️</div>
+    <div class="background-heart heart-22">❤️</div>
+
+    <div class="container">
+      <header>
+        <div class="heart-animation">❤️</div>
+        <h1 style="margin-top: 30px">Mi Vale preciosa</h1>
+        <p style="padding-left: 10px; padding-right: 10px">
+          Este pequeño detalle es para ti, te quiero con todo mi corazón,
+          gracias por todo.
+        </p>
+      </header>
+
+      <section class="section" id="section1">
+        <h2>¿Cómo empezó todo esto?</h2>
+        <p>
+          Me encanta la idea de poder estar con alguien donde nos hemos conocido
+          desde niños, me encanta poder recordar todos esos momentos de las
+          primeras veces donde nos conocimos.
+        </p>
+        <p>Yo sé que ya te gustaba desde ese entonces. 😅</p>
+        <div class="gallery">
+          <img src="./im/IM1.jpg" alt="Nuestra foto 1" />
+          <img src="./im/IM2.png" alt="Nuestra foto 2" />
+          <img src="./im/IM3.png" alt="Nuestra foto 3" />
+          <img src="./im/IM8.png" alt="Nuestra foto 8" />
+        </div>
+      </section>
+
+      <section class="section" id="section2">
+        <h2>Nuestros momentos</h2>
+        <p>
+          Hemos vivido tantas cosas y tantos momentos que se me hace imposible
+          decir cual es el mejor.
+        </p>
+        <p>
+          Estoy seguro de que quiero pasar muchos años llenos de recuerdos y
+          aventuras contigo.
+        </p>
+        <div class="gallery">
+          <img src="./im/IM4.png" alt="Nuestra foto 4" />
+          <img src="./im/IM5.png" alt="Nuestra foto 5" />
+          <img src="./im/IM6.png" alt="Nuestra foto 6" />
+          <img src="./im/IM11.png" alt="Nuestra foto 11" />
+        </div>
+      </section>
+
+      <section class="section" id="section3">
+        <h2>Gracias pequeña</h2>
+        <p>
+          Gracias por ser tú misma siempre que estamos juntos, y gracias por
+          mostrarme todos los lados de ti.
+        </p>
+        <p>No terminaría de agradecer todo lo que me has apoyado, escuchado.</p>
+        <p style="font-weight: bold">Te quiero con todo mi corazón 🥹.</p>
+        <div class="gallery">
+          <img src="./im/IM7.png" alt="Nuestra foto 7" />
+          <img src="./im/IM8.png" alt="Nuestra foto 8" />
+          <img src="./im/IM9.png" alt="Nuestra foto 9" />
+          <img src="./im/IM1.jpg" alt="Nuestra foto 1" />
+        </div>
+      </section>
+
+      <section class="section" id="section4">
+        <h2>Te quiero</h2>
+        <p style="font-weight: bold">
+          Y quien lo iba a imaginar, te has vuelto una de las personas mas
+          importantes en mi vida.
+        </p>
+        <p>
+          Quiero todo contigo, quiero estar en las buenas y en las malas junto a
+          ti 🫶🏼.
+        </p>
+        <div class="gallery">
+          <img src="./im/IM10.png" alt="Nuestra foto 10" />
+          <img src="./im/IM11.png" alt="Nuestra foto 11" />
+        </div>
+      </section>
+
+      <section class="special-message section" id="final-section">
+        <h2>Se me olvidaba algo!!...</h2>
+        <p>
+          Estoy seguro de que quiero estar contigo, y de que no quiero a nadie
+          más que no seas tú.
+        </p>
+        <p>
+          Y támbien estoy seguro de que daré todo y mucho más de mi parte para
+          que esto funcione por muchos muchos años.
+        </p>
+        <button id="triggerModalButton">¿Le presionas aquí?</button>
+      </section>
+
+      <footer>
+        <p>&copy; 2025 Hecho un pequeño detalle para mi Vale hermosa. ❤️</p>
+      </footer>
+    </div>
+
+    <div id="questionModal" class="modal">
+      <div class="modal-content">
+        <h3>Pequeñaaaaa</h3>
+        <p class="heartbeat-text" style="margin-top: -10px; font-size: 2em; font-weight: bold; color: #9c36b3">
+          ¿Quieres ser mi novia?
+        </p>
+        <div class="modal-buttons">
+          <button id="yesButton">¡Sí!</button>
+          <button id="noButton">No</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="loveModal" class="modal">
+      <div class="modal-content">
+        <h3>¡Te Amo!</h3>
+        <p>Hace algunos días te quería decir esto 🫶🏼.</p>
+      </div>
+    </div>
+
+    <div id="okModal" class="modal">
+      <div class="modal-content">
+        <h3>Ay sí, ay sí</h3>
+        <p>Me caes gordaaaa 😤.</p>
+      </div>
+    </div>
+
+    <script>
+      // Función para animar la aparición de las secciones al hacer scroll
+      document.addEventListener("DOMContentLoaded", () => {
+        const sections = document.querySelectorAll(".section");
+
+        const observerOptions = {
+          root: null,
+          rootMargin: "0px",
+          threshold: 0.2,
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              observer.unobserve(entry.target); // Dejar de observar una vez que es visible
+            }
+          });
+        }, observerOptions);
+
+        sections.forEach((section) => {
+          observer.observe(section);
+        });
+
+        // Get modal elements
+        const questionModal = document.getElementById("questionModal");
+        const loveModal = document.getElementById("loveModal");
+        const okModal = document.getElementById("okModal");
+
+        // Get buttons
+        const triggerModalButton =
+          document.getElementById("triggerModalButton");
+        const yesButton = document.getElementById("yesButton");
+        const noButton = document.getElementById("noButton");
+        const closeOkModalButton =
+          document.getElementById("closeOkModalButton");
+
+        // Event listener for the main button to open the first modal
+        if (triggerModalButton) {
+          triggerModalButton.addEventListener("click", () => {
+            openModal(questionModal);
+          });
+        }
+
+        // Event listener for the "¡Sí!" button inside the first modal
+        if (yesButton) {
+          yesButton.addEventListener("click", () => {
+            closeModal(questionModal); // Cierra el primer modal
+            // Pequeño retraso para que el cierre del primer modal se vea suave
+            setTimeout(() => {
+              openModal(loveModal); // Abre el segundo modal después de un breve retraso
+            }, 300);
+          });
+        }
+
+        // Event listener for the "No" button inside the first modal
+        if (noButton) {
+          noButton.addEventListener("click", () => {
+            closeModal(questionModal); // Cierra el primer modal
+            setTimeout(() => {
+              openModal(okModal); // Abre el modal "Ok"
+            }, 300);
+          });
+        }
+
+        // Event listener for the "Cerrar" button inside the "Ok" modal
+        if (closeOkModalButton) {
+          closeOkModalButton.addEventListener("click", () => {
+            closeModal(okModal);
+          });
+        }
+
+        // Functions to open and close modals
+        function openModal(modalElement) {
+          modalElement.style.display = "flex"; // Asegura que el display sea flex
+          setTimeout(() => {
+            modalElement.classList.add("show");
+          }, 10); // Pequeño retraso para asegurar que la transición CSS se aplique
+        }
+
+        function closeModal(modalElement) {
+          modalElement.classList.remove("show");
+          setTimeout(() => {
+            modalElement.style.display = "none"; // Oculta completamente después de la transición
+          }, 300); // Coincide con la duración de la transición CSS
+        }
+
+        // Close modals if background is clicked
+        questionModal.addEventListener("click", function (event) {
+          if (event.target === this) {
+            closeModal(this);
+          }
+        });
+        loveModal.addEventListener("click", function (event) {
+          if (event.target === this) {
+            closeModal(this);
+          }
+        });
+        okModal.addEventListener("click", function (event) {
+          if (event.target === this) {
+            closeModal(this);
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
